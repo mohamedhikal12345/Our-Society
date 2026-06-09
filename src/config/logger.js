@@ -16,12 +16,19 @@ const transports = [
         }),
       ]
     : []),
-  // ✅ Only add MongoDB transport if DB env var exists
-  ...(process.env.DB
+  // ✅ Only add MongoDB transport in production with timeout options
+  ...(isProduction && process.env.DB
     ? [
         new winston.transports.MongoDB({
           db: process.env.DB,
           level: "error",
+          tryReconnect: true,
+          options: {
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000,
+            connectTimeoutMS: 5000,
+            socketTimeoutMS: 5000,
+          },
         }),
       ]
     : []),
