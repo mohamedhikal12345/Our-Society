@@ -4,7 +4,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 
 const express = require("express");
-
+app.set("trust proxy", 1);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
