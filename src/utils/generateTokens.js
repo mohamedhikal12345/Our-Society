@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const generateAccessToken = (data) => {
   return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "4d",
+    expiresIn: "15m",
   });
   // "access token need to update"
 };
